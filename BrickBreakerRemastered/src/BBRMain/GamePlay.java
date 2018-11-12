@@ -9,6 +9,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -21,10 +22,11 @@ public class GamePlay extends JPanel implements Constants {
 	private MyMouseMotionListener mouseListener;
 	private int mouseX;
 
-	Ball ball;
-	Paddle paddle;
-	StageGenerator stage;
-	HUD hud;
+	private Ball ball;
+	private Paddle paddle;
+	private StageGenerator stage;
+	private HUD hud;
+	private ArrayList<Boosters> boosters;
 
 	public GamePlay() {
 		play();
@@ -39,6 +41,7 @@ public class GamePlay extends JPanel implements Constants {
 		this.hud = new HUD();
 		this.mouseListener = new MyMouseMotionListener();
 		addMouseMotionListener(mouseListener);
+		this.boosters = new ArrayList<Boosters>();
 
 		playing = true;
 		image = new BufferedImage(WINDOW_WIDTH, WINDOW_HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -48,7 +51,7 @@ public class GamePlay extends JPanel implements Constants {
 
 	public void run() {
 		try {
-			Thread.sleep(20);
+			Thread.sleep(2000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,7 +93,10 @@ public class GamePlay extends JPanel implements Constants {
 
 		A: for (int rows = 0; rows < stage.getStage().length; rows++) {
 			for (int cols = 0; cols < stage.getStage()[0].length; cols++) {
-				if (stage.getStage()[rows][cols] > 0) {
+
+				int currentBrick = stage.getStage()[rows][cols];
+
+				if (currentBrick > 0) {
 					int brickX = cols * stage.getBrickWidth() + Constants.HOR_PAD;
 					int brickY = rows * stage.getBrickHeight() + Constants.VER_PAD;
 					int brickWidth = stage.getBrickWidth();
@@ -99,6 +105,14 @@ public class GamePlay extends JPanel implements Constants {
 					Rectangle brickR = new Rectangle(brickX, brickY, brickWidth, brickHeight);
 
 					if (ballR.intersects(brickR)) {
+
+						if (stage.getStage()[rows][cols] > 3) {
+							this.boosters.add(new Boosters(brickX, brickY, currentBrick, brickWidth, brickHeight));
+							this.stage.setBrick(3, rows, cols);
+						} else {
+							this.stage.brickHit(rows, cols);
+						}
+
 						this.stage.brickHit(rows, cols);
 						this.hud.addScore(5);
 						if (ball.getBallX() + 19 <= brickR.x || ball.getBallX() + 1 >= brickR.x + brickR.width) {
@@ -117,6 +131,10 @@ public class GamePlay extends JPanel implements Constants {
 	public void update() {
 		checkIntersections();
 		this.ball.update();
+
+		for (Boosters bo : this.boosters) {
+			bo.update();
+		}
 	}
 
 	public void draw() {
@@ -134,6 +152,8 @@ public class GamePlay extends JPanel implements Constants {
 		this.stage.paint(g);
 		this.ball.paint(g);
 		this.paddle.paint(g);
+		paintBoosters();
+
 		if (playing) {
 			this.hud.paint(g);
 		}
@@ -176,6 +196,12 @@ public class GamePlay extends JPanel implements Constants {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(image, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, null);
 		g2.dispose();
+	}
+
+	public void paintBoosters() {
+		for (Boosters bo : boosters) {
+			bo.paint(g);
+		}
 	}
 
 	private class MyMouseMotionListener implements MouseMotionListener {
