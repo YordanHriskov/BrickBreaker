@@ -26,7 +26,7 @@ public class StageGenerator implements Constants {
 
 		this.stage[2][2] = 4;
 		this.stage[3][6] = 6;
-		
+
 	}
 
 	public void paint(Graphics2D g) {

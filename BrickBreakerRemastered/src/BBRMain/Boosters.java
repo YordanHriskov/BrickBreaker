@@ -26,7 +26,7 @@ public class Boosters implements Constants {
 		this.boosterWidth = boosterWidth;
 		this.boosterHeight = boosterHeight;
 
-		if (this.boosterType < 5) {
+		if (this.boosterType == 4) {
 			this.boosterType = 4;
 		}
 		if (this.boosterType > 6) {

@@ -51,7 +51,7 @@ public class GamePlay extends JPanel implements Constants {
 
 	public void run() {
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(20);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -112,8 +112,7 @@ public class GamePlay extends JPanel implements Constants {
 						} else {
 							this.stage.brickHit(rows, cols);
 						}
-
-						this.stage.brickHit(rows, cols);
+						
 						this.hud.addScore(5);
 						if (ball.getBallX() + 19 <= brickR.x || ball.getBallX() + 1 >= brickR.x + brickR.width) {
 							this.ball.setBallXdir(-ball.getBallXdir());
@@ -153,10 +152,7 @@ public class GamePlay extends JPanel implements Constants {
 		this.ball.paint(g);
 		this.paddle.paint(g);
 		paintBoosters();
-
-		if (playing) {
-			this.hud.paint(g);
-		}
+		this.hud.paint(g);
 
 		if (this.stage.isWinner() == true) {
 			playing = false;
@@ -186,7 +182,7 @@ public class GamePlay extends JPanel implements Constants {
 		g.setFont(new Font("serif", Font.BOLD, 50));
 		g.drawString("GAME OVER", 180, END_GAME_LABEL);
 		g.setFont(new Font("serif", Font.BOLD, 30));
-		g.drawString("You scored " + this.hud.getScore() + " points!", 190, SCORE_LABEL);
+		g.drawString("You scored " + this.hud.getScore() + " points!", 200, SCORE_LABEL);
 		g.setColor(Color.decode("#99CCFF"));
 		g.setFont(new Font("serif", Font.ITALIC, 30));
 		g.drawString("Press SPACE BAR to restart the game!", 100, RESTART_LABEL);
