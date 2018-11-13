@@ -24,8 +24,8 @@ public class StageGenerator implements Constants {
 			}
 		}
 
-		this.stage[2][2] = 4;
-		this.stage[3][6] = 6;
+		this.stage[0][6] = 4;
+		this.stage[3][6] = 5;
 
 	}
 

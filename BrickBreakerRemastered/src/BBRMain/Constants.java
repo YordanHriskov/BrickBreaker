@@ -1,5 +1,7 @@
 package BBRMain;
 
+import java.awt.Color;
+
 public interface Constants {
 
 	public static final int WINDOW_CENTER_TOP = 50;
@@ -20,6 +22,8 @@ public interface Constants {
 	public static final int RESTART_LABEL = WINDOW_HEIGHT - 280;
 	
 	public static final int WIDER_PADDLE = 4;
-	public static final int FASTER_BALL = 6;
+	public static final int FASTER_BALL = 5;
+	public static final Color WIDER_PADDLE_COLOR = new Color(255, 153, 51);
+	public static final Color FASTER_BALL_COLOR = new Color(102, 178, 255);
 
 }

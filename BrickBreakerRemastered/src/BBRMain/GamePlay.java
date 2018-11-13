@@ -37,7 +37,7 @@ public class GamePlay extends JPanel implements Constants {
 		this.mouseX = 0;
 		this.stage = new StageGenerator(4, 7);
 		this.ball = new Ball();
-		this.paddle = new Paddle();
+		this.paddle = new Paddle(100, 10);
 		this.hud = new HUD();
 		this.mouseListener = new MyMouseMotionListener();
 		addMouseMotionListener(mouseListener);
@@ -80,6 +80,17 @@ public class GamePlay extends JPanel implements Constants {
 		Rectangle ballR = ball.getBallBox();
 		Rectangle paddleR = paddle.getPaddleBox();
 
+		for (int i = 0; i < boosters.size(); i++) {
+			Rectangle powerR = boosters.get(i).getBoosterBox();
+
+			if (paddleR.intersects(powerR) && !boosters.get(i).getUsedBooster()) {
+				if (boosters.get(i).getBoosterType() == WIDER_PADDLE) {
+					paddle.setWidth(paddle.getWidth() * 2);
+					boosters.get(i).setUsedBooster(true);
+				}
+			}
+		}
+
 		if (ballR.intersects(paddleR)) {
 			this.ball.setBallYdir(-ball.getBallYdir());
 			if (ball.getBallX() < mouseX + paddle.getWidth() / 4) {
@@ -112,7 +123,7 @@ public class GamePlay extends JPanel implements Constants {
 						} else {
 							this.stage.brickHit(rows, cols);
 						}
-						
+
 						this.hud.addScore(5);
 						if (ball.getBallX() + 19 <= brickR.x || ball.getBallX() + 1 >= brickR.x + brickR.width) {
 							this.ball.setBallXdir(-ball.getBallXdir());
@@ -130,6 +141,7 @@ public class GamePlay extends JPanel implements Constants {
 	public void update() {
 		checkIntersections();
 		this.ball.update();
+		this.paddle.update();
 
 		for (Boosters bo : this.boosters) {
 			bo.update();

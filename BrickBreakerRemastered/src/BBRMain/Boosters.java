@@ -14,10 +14,9 @@ public class Boosters implements Constants {
 	private int boosterHeight;
 
 	private boolean onScreen;
+	private boolean usedBooster;
 
 	private Color boosterColor;
-	public static final Color WIDER_PADDLE_COLOR = new Color(255, 153, 51);
-	public static final Color FASTER_BALL_COLOR = new Color(102, 178, 255);
 
 	public Boosters(int boosterX, int boosterY, int boosterType, int boosterWidth, int boosterHeight) {
 		this.boosterX = boosterX;
@@ -25,12 +24,13 @@ public class Boosters implements Constants {
 		this.boosterType = boosterType;
 		this.boosterWidth = boosterWidth;
 		this.boosterHeight = boosterHeight;
+		this.usedBooster = false;
 
 		if (this.boosterType == 4) {
 			this.boosterType = 4;
 		}
-		if (this.boosterType > 6) {
-			this.boosterType = 6;
+		if (this.boosterType > 4) {
+			this.boosterType = 5;
 		}
 
 		if (this.boosterType == WIDER_PADDLE) {
@@ -58,6 +58,14 @@ public class Boosters implements Constants {
 
 	public Rectangle getBoosterBox() {
 		return new Rectangle(boosterX, boosterY, boosterWidth, boosterHeight);
+	}
+	
+	public boolean getUsedBooster() {
+		return this.usedBooster;
+	}
+	
+	public void setUsedBooster(boolean used) {
+		this.usedBooster = used;
 	}
 
 	// get and set for boosterX **********************
