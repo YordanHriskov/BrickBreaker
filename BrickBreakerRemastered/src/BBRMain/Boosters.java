@@ -29,7 +29,7 @@ public class Boosters implements Constants {
 		if (this.boosterType == 4) {
 			this.boosterType = 4;
 		}
-		if (this.boosterType > 4) {
+		if (this.boosterType == 5) {
 			this.boosterType = 5;
 		}
 
@@ -37,8 +37,8 @@ public class Boosters implements Constants {
 			this.boosterColor = WIDER_PADDLE_COLOR;
 		}
 
-		if (this.boosterType == FASTER_BALL) {
-			this.boosterColor = FASTER_BALL_COLOR;
+		if (this.boosterType == SMALLER_PADDLE) {
+			this.boosterColor = SMALLER_PADDLE_COLOR;
 		}
 
 		boosterYdir = (int) (Math.random() * 10 + 1);

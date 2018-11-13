@@ -11,8 +11,6 @@ public interface Constants {
 
 	public static final int BORDER_LINE_SIZE = 3;
 	public static final int RIGHT_BORDER_LINE = 691;
-
-	public static final int BALL_SIZE = 20;
 	
 	public static final int HOR_PAD = 80;
 	public static final int VER_PAD = 50;
@@ -22,8 +20,11 @@ public interface Constants {
 	public static final int RESTART_LABEL = WINDOW_HEIGHT - 280;
 	
 	public static final int WIDER_PADDLE = 4;
-	public static final int FASTER_BALL = 5;
+	public static final int SMALLER_PADDLE = 5;
+	public static final int FASTER_BALL = 6;
 	public static final Color WIDER_PADDLE_COLOR = new Color(255, 153, 51);
-	public static final Color FASTER_BALL_COLOR = new Color(102, 178, 255);
+	public static final Color SMALLER_PADDLE_COLOR = new Color(102, 178, 255);
+	public static final Color FASTER_BALL_COLOR = new Color(255, 0, 0);
+	
 
 }

@@ -10,6 +10,7 @@ public class Paddle implements Constants {
 	private int paddleWidth;
 	private int paddleHeight;
 	private int originalWidth;
+	
 	private long widthTimer;
 	private boolean timeWidth;
 	
@@ -40,7 +41,7 @@ public class Paddle implements Constants {
 		if(timeWidth) {
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("serif", Font.ITALIC, 11));
-			g.drawString("Shrinking in: " + (5 - (System.nanoTime() - widthTimer) / 1000000000), (int)paddleX, paddleY + 9);
+			g.drawString(" Restoring in: " + (5 - (System.nanoTime() - widthTimer) / 1000000000), (int)paddleX, paddleY + 9);
 		}
 	}
 

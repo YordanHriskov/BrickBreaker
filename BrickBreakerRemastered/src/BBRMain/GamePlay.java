@@ -27,6 +27,7 @@ public class GamePlay extends JPanel implements Constants {
 	private StageGenerator stage;
 	private HUD hud;
 	private ArrayList<Boosters> boosters;
+	private ArrayList<SplashingBrick> splashingBrick;
 
 	public GamePlay() {
 		play();
@@ -36,12 +37,13 @@ public class GamePlay extends JPanel implements Constants {
 
 		this.mouseX = 0;
 		this.stage = new StageGenerator(4, 7);
-		this.ball = new Ball();
+		this.ball = new Ball(340, 540, 1, -1, 20);
 		this.paddle = new Paddle(100, 10);
 		this.hud = new HUD();
 		this.mouseListener = new MyMouseMotionListener();
 		addMouseMotionListener(mouseListener);
 		this.boosters = new ArrayList<Boosters>();
+		this.splashingBrick = new ArrayList<SplashingBrick>();
 
 		playing = true;
 		image = new BufferedImage(WINDOW_WIDTH, WINDOW_HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -88,6 +90,11 @@ public class GamePlay extends JPanel implements Constants {
 					paddle.setWidth(paddle.getWidth() * 2);
 					boosters.get(i).setUsedBooster(true);
 				}
+
+				if (boosters.get(i).getBoosterType() == SMALLER_PADDLE) {
+					paddle.setWidth(paddle.getWidth() / 2);
+					boosters.get(i).setUsedBooster(true);
+				}
 			}
 		}
 
@@ -117,7 +124,11 @@ public class GamePlay extends JPanel implements Constants {
 
 					if (ballR.intersects(brickR)) {
 
-						if (stage.getStage()[rows][cols] > 3) {
+						if (currentBrick == 1) {
+							this.splashingBrick.add(new SplashingBrick(brickX, brickY, stage));
+						}
+
+						if (currentBrick > 3) {
 							this.boosters.add(new Boosters(brickX, brickY, currentBrick, brickWidth, brickHeight));
 							this.stage.setBrick(3, rows, cols);
 						} else {
@@ -145,6 +156,13 @@ public class GamePlay extends JPanel implements Constants {
 
 		for (Boosters bo : this.boosters) {
 			bo.update();
+		}
+
+		for (int i = 0; i < splashingBrick.size(); i++) {
+			this.splashingBrick.get(i).update();
+			if (!splashingBrick.get(i).getLive()) {
+				this.splashingBrick.remove(i);
+			}
 		}
 	}
 
@@ -174,6 +192,10 @@ public class GamePlay extends JPanel implements Constants {
 		if (this.ball.isLooser() == true) {
 			playing = false;
 			paintLooser();
+		}
+		
+		for(SplashingBrick sb : splashingBrick) {
+			sb.paint(g);
 		}
 
 	}

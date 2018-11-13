@@ -46,6 +46,9 @@ public class StageGenerator implements Constants {
 					if (stage[rows][cols] == Boosters.WIDER_PADDLE) {
 						g.setColor(Boosters.WIDER_PADDLE_COLOR);
 					}
+					if (stage[rows][cols] == Boosters.SMALLER_PADDLE) {
+						g.setColor(Boosters.SMALLER_PADDLE_COLOR);
+					}
 					if (stage[rows][cols] == Boosters.FASTER_BALL) {
 						g.setColor(Boosters.FASTER_BALL_COLOR);
 					}

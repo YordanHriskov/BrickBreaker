@@ -10,12 +10,15 @@ public class Ball implements Constants {
 	private double ballY;
 	private double ballXdir;
 	private double ballYdir;
+	
+	private int ballSize;
 
-	public Ball() {
-		this.ballX = 340;
-		this.ballY = 540;
-		this.ballXdir = 1;
-		this.ballYdir = -1;
+	public Ball(int ballX, int ballY, int ballXdir, int ballYdir, int ballSize) {
+		this.ballX = ballX;
+		this.ballY = ballY;
+		this.ballXdir = ballXdir;
+		this.ballYdir = ballYdir;
+		this.ballSize = ballSize;
 	}
 
 	public void update() {
@@ -38,11 +41,12 @@ public class Ball implements Constants {
 
 	public void paint(Graphics2D g) {
 		g.setColor(Color.white);
-		g.fillOval((int) ballX, (int) ballY, BALL_SIZE, BALL_SIZE);
+		g.fillOval((int) ballX, (int) ballY, ballSize, ballSize);
+
 	}
 
 	public Rectangle getBallBox() {
-		return new Rectangle((int) ballX, (int) ballY, BALL_SIZE, BALL_SIZE);
+		return new Rectangle((int) ballX, (int) ballY, ballSize, ballSize);
 	}
 
 	public void setBallYdir(double dirY) {
@@ -64,14 +68,15 @@ public class Ball implements Constants {
 	public double getBallX() {
 		return this.ballX;
 	}
-	
+
 	public boolean isLooser() {
 		boolean looser = false;
-		
-		if(this.ballY > WINDOW_HEIGHT - BALL_SIZE) {
+
+		if (this.ballY > WINDOW_HEIGHT - ballSize) {
 			looser = true;
 		}
-		
+
 		return looser;
 	}
+
 }
