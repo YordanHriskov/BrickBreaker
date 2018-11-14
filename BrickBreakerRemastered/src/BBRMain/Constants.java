@@ -21,10 +21,8 @@ public interface Constants {
 	
 	public static final int WIDER_PADDLE = 4;
 	public static final int SMALLER_PADDLE = 5;
-	public static final int FASTER_BALL = 6;
+
 	public static final Color WIDER_PADDLE_COLOR = new Color(255, 153, 51);
-	public static final Color SMALLER_PADDLE_COLOR = new Color(102, 178, 255);
-	public static final Color FASTER_BALL_COLOR = new Color(255, 0, 0);
-	
+	public static final Color SMALLER_PADDLE_COLOR = new Color(102, 178, 255);	
 
 }

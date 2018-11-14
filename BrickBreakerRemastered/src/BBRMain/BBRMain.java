@@ -11,8 +11,6 @@ public class BBRMain implements Constants{
 		
 		frame.setTitle("Brick Breaker Remastered");
 		frame.setBounds(WINDOW_CENTER_LEFT, WINDOW_CENTER_TOP, WINDOW_WIDTH, WINDOW_HEIGHT);
-//		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-//		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

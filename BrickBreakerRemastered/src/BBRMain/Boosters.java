@@ -68,33 +68,6 @@ public class Boosters implements Constants {
 		this.usedBooster = used;
 	}
 
-	// get and set for boosterX **********************
-	public int getBoosterX() {
-		return this.boosterX;
-	}
-
-	public void setBoosterX(int boosterX) {
-		this.boosterX = boosterX;
-	}
-
-	// get and set for boosterY **********************
-	public int getBoosterY() {
-		return this.boosterY;
-	}
-
-	public void setBoosterY(int boosterY) {
-		this.boosterY = boosterY;
-	}
-
-	// get and set for boosterYdir *******************
-	public int getBoosterYdir() {
-		return this.boosterYdir;
-	}
-
-	public void setBoosterYdir(int boosterYdir) {
-		this.boosterYdir = boosterYdir;
-	}
-
 	// get and set for boosterType *******************
 	public int getBoosterType() {
 		return this.boosterType;

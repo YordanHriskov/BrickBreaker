@@ -19,13 +19,13 @@ public class StageGenerator implements Constants {
 		this.stage = new int[rows][cols];
 		for (int i = 0; i < this.stage.length; i++) {
 			for (int j = 0; j < this.stage[0].length; j++) {
-				int randValue = (int) (Math.random() * 3 + 1);
+				int randValue = (int) (Math.random() * 5 + 1);
 				stage[i][j] = randValue;
 			}
 		}
 
-		this.stage[0][6] = 4;
-		this.stage[3][6] = 5;
+//		this.stage[0][6] = 4;
+//		this.stage[3][6] = 5;
 
 	}
 
@@ -48,9 +48,6 @@ public class StageGenerator implements Constants {
 					}
 					if (stage[rows][cols] == Boosters.SMALLER_PADDLE) {
 						g.setColor(Boosters.SMALLER_PADDLE_COLOR);
-					}
-					if (stage[rows][cols] == Boosters.FASTER_BALL) {
-						g.setColor(Boosters.FASTER_BALL_COLOR);
 					}
 					g.fillRect(cols * brickWidth + HOR_PAD, rows * brickHeight + VER_PAD, brickWidth, brickHeight);
 					g.setStroke(new BasicStroke(3));

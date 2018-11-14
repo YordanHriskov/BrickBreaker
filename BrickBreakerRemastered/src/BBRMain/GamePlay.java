@@ -193,8 +193,8 @@ public class GamePlay extends JPanel implements Constants {
 			playing = false;
 			paintLooser();
 		}
-		
-		for(SplashingBrick sb : splashingBrick) {
+
+		for (SplashingBrick sb : splashingBrick) {
 			sb.paint(g);
 		}
 
@@ -206,9 +206,6 @@ public class GamePlay extends JPanel implements Constants {
 		g.drawString("LEVEL PASSED", 150, END_GAME_LABEL);
 		g.setFont(new Font("serif", Font.BOLD, 30));
 		g.drawString("You scored " + this.hud.getScore() + " points!", 190, SCORE_LABEL);
-		g.setColor(Color.decode("#99CCFF"));
-		g.setFont(new Font("serif", Font.ITALIC, 30));
-		g.drawString("Press SPACE BAR to restart the game!", 100, RESTART_LABEL);
 	}
 
 	public void paintLooser() {
@@ -217,9 +214,6 @@ public class GamePlay extends JPanel implements Constants {
 		g.drawString("GAME OVER", 180, END_GAME_LABEL);
 		g.setFont(new Font("serif", Font.BOLD, 30));
 		g.drawString("You scored " + this.hud.getScore() + " points!", 200, SCORE_LABEL);
-		g.setColor(Color.decode("#99CCFF"));
-		g.setFont(new Font("serif", Font.ITALIC, 30));
-		g.drawString("Press SPACE BAR to restart the game!", 100, RESTART_LABEL);
 	}
 
 	public void paintComponent(Graphics g) {
